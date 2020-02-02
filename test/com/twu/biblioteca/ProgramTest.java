@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -37,9 +39,19 @@ public class ProgramTest {
     }
 
     @Test
+    public void printBookListTest() {
+        Program program = new Program();
+        List bookList = new ArrayList<>();
+        bookList.add(new Book("Book1"));
+        bookList.add(new Book("Book2"));
+        String actual = program.buildBookList(bookList);
+        assertEquals("Books:\nBook1\nBook2\n", actual);
+    }
+
+    @Test
     public void mainTest() {
         Program program = new Program();
         program.main();
-        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n", outContent.toString());
+        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\nBooks:\nBook1\nBook2\n\n", outContent.toString());
     }
 }
