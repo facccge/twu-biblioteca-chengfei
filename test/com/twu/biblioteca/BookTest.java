@@ -15,7 +15,7 @@ public class BookTest {
     private static Book book2 = new Book("0002", "Book2", "Author2", "2002");
 
     @After
-    public void restoreBookList(){
+    public void restoreBookList() {
         Book.initializeBookList();
     }
 
@@ -39,5 +39,12 @@ public class BookTest {
         assertEquals(true, Book.checkOut("0001"));
         assertEquals(false, Book.checkOut("0001"));
         assertEquals(false, Book.checkOut("0003"));
+    }
+
+    @Test
+    public void returnBookTest() {
+        assertEquals(true, Book.checkOut("0001"));
+        assertEquals(false, Book.returnBook("0002"));
+        assertEquals(true, Book.returnBook("0001"));
     }
 }

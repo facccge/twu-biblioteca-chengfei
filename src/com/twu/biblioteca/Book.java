@@ -52,6 +52,18 @@ public class Book {
         this.isCheckOut = false;
     }
 
+    public static boolean returnBook(String returnId) {
+        boolean isSuccess = false;
+        for (Book book : bookList) {
+            if (book.id.equals(returnId) && (book.isCheckOut == true)) {
+                book.isCheckOut = false;
+                isSuccess = true;
+                break;
+            }
+        }
+        return isSuccess;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

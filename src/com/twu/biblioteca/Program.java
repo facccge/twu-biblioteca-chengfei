@@ -10,6 +10,7 @@ public class Program {
     private static String mainMenu = "Main menu:\n" +
             "1. List of books\n" +
             "2. Check out book\n" +
+            "3. Return book\n" +
             "q. Quit\n" +
             "Please select an option.";
 
@@ -25,6 +26,9 @@ public class Program {
             case "2":
                 checkOutBook();
                 break;
+            case "3":
+                returnBook();
+                break;
             case "q":
                 isRunning = false;
                 break;
@@ -38,11 +42,17 @@ public class Program {
     public void checkOutBook() {
         Utils.printMessage("Please input id of the book which you want to check out.");
         String id = scanner.nextLine();
-        if(Book.checkOut(id)){
+        if (Book.checkOut(id)) {
             Utils.printMessage("Thank you! Enjoy the book");
             return;
-        };
+        }
         Utils.printMessage("Sorry, that book is not available");
+    }
+
+    public void returnBook() {
+        Utils.printMessage("Please input id of the book which you want to return.");
+        String id = scanner.nextLine();
+        Book.returnBook(id);
     }
 
     public void listOfBooks() {
