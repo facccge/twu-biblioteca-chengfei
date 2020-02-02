@@ -43,16 +43,18 @@ public class Program {
         Utils.printMessage("Please input id of the book which you want to check out.");
         String id = scanner.nextLine();
         if (Book.checkOut(id)) {
-            Utils.printMessage("Thank you! Enjoy the book");
+            Utils.printMessage("Thank you! Enjoy the book.");
             return;
         }
-        Utils.printMessage("Sorry, that book is not available");
+        Utils.printMessage("Sorry, that book is not available.");
     }
 
     public void returnBook() {
         Utils.printMessage("Please input id of the book which you want to return.");
         String id = scanner.nextLine();
-        Book.returnBook(id);
+        if(Book.returnBook(id)){
+            Utils.printMessage("Thank you for returning the book.");
+        }
     }
 
     public void listOfBooks() {

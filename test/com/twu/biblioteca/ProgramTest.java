@@ -77,7 +77,7 @@ public class ProgramTest {
         assertEquals(
                 mainMenu +
                         "Please input id of the book which you want to check out.\n" +
-                        "Thank you! Enjoy the book\n", outContent.toString());
+                        "Thank you! Enjoy the book.\n", outContent.toString());
 
         System.setIn(sysInBackup);
     }
@@ -94,7 +94,7 @@ public class ProgramTest {
         assertEquals(
                 mainMenu +
                         "Please input id of the book which you want to check out.\n" +
-                        "Sorry, that book is not available\n", outContent.toString());
+                        "Sorry, that book is not available.\n", outContent.toString());
 
         System.setIn(sysInBackup);
     }
@@ -112,7 +112,8 @@ public class ProgramTest {
 
         assertEquals(
                 mainMenu +
-                        "Please input id of the book which you want to return.\n", outContent.toString());
+                        "Please input id of the book which you want to return.\n" +
+                        "Thank you for returning the book.\n", outContent.toString());
 
         System.setIn(sysInBackup);
     }
