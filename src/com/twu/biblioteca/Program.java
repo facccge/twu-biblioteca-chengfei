@@ -38,7 +38,9 @@ public class Program {
     public void checkOutBook() {
         Utils.printMessage("Please input id of the book which you want to check out.");
         String id = scanner.nextLine();
-        Book.checkOut(id);
+        if(Book.checkOut(id)){
+            Utils.printMessage("Thank you! Enjoy the book");
+        };
     }
 
     public void listOfBooks() {

@@ -73,7 +73,8 @@ public class ProgramTest {
 
         assertEquals(
                 mainMenu +
-                        "Please input id of the book which you want to check out.\n", outContent.toString());
+                        "Please input id of the book which you want to check out.\n" +
+                        "Thank you! Enjoy the book\n", outContent.toString());
 
         System.setIn(sysInBackup);
     }
