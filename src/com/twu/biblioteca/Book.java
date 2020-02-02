@@ -5,23 +5,51 @@ import java.util.List;
 import java.util.Objects;
 
 public class Book {
-    public static List<Book> bookList=new ArrayList<Book>();
+    public static List<Book> bookList;
+
     static {
-        bookList.add(new Book("Book1","Author1","2001"));
-        bookList.add(new Book("Book2","Author2","2002"));
-    }
-    public static List<Book> list(){
-        return bookList;
+        initializeBookList();
     }
 
+    public static void initializeBookList() {
+        bookList = new ArrayList<Book>();
+        bookList.add(new Book("0001", "Book1", "Author1", "2001"));
+        bookList.add(new Book("0002", "Book2", "Author2", "2002"));
+    }
+
+    public static List<Book> list() {
+        List availableBookList = new ArrayList();
+        for (Book book : bookList) {
+            if (book.isCheckOut == false)
+                availableBookList.add(book);
+        }
+        return availableBookList;
+    }
+
+    public static boolean checkOut(String checkOutId) {
+        boolean isSuccess = false;
+        for (Book book : bookList) {
+            if (book.id.equals(checkOutId)) {
+                book.isCheckOut = true;
+                isSuccess = true;
+                break;
+            }
+        }
+        return isSuccess;
+    }
+
+    private String id;
     private String title;
     private String author;
     private String publicationYear;
+    private boolean isCheckOut;
 
-    public Book(String title, String author, String publicationYear) {
+    public Book(String id, String title, String author, String publicationYear) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
+        this.isCheckOut = false;
     }
 
     @Override
@@ -39,18 +67,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return title + " | " + author + " | " + publicationYear;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getPublicationYear() {
-        return publicationYear;
+        return id + " | " + title + " | " + author + " | " + publicationYear;
     }
 }

@@ -7,8 +7,9 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         Utils.printMessage(welcomeMessage);
         Program program = new Program();
-        while (true) {
-            program.main();
+        boolean isRunning = true;
+        while (isRunning) {
+            isRunning = program.main();
         }
     }
 }

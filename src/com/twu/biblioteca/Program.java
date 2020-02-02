@@ -4,30 +4,51 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Program {
+    Scanner scanner = new Scanner(System.in);
+
+
     private static String mainMenu = "Main menu:\n" +
             "1. List of books\n" +
-            "Please press the number of the option you want to select.";
+            "2. Check out book\n" +
+            "q. Quit\n" +
+            "Please select an option.";
 
-    public void main() {
+    public boolean main() {
+        boolean isRunning = true;
         Utils.printMessage(mainMenu);
-        Scanner scanner = new Scanner(System.in);
+
         String option = scanner.nextLine();
         switch (option) {
             case "1":
                 listOfBooks();
                 break;
+            case "2":
+                checkOutBook();
+                break;
+            case "q":
+                isRunning = false;
+                break;
             default:
                 Utils.printMessage("Please select a valid option!");
                 break;
         }
+        return isRunning;
+    }
+
+    public void checkOutBook() {
+        Utils.printMessage("Please input id of the book which you want to check out.");
+        String id = scanner.nextLine();
+        Book.checkOut(id);
     }
 
     public void listOfBooks() {
         List<Book> bookList = Book.list();
-        String bookListMessage = "Books:\n";
+        String bookListMessage = "************************************************\n" +
+                "Books:\n";
         for (Book book : bookList) {
             bookListMessage += book.toString() + "\n";
         }
-        Utils.printMessage(bookListMessage.substring(0, bookListMessage.length() - 1));
+        bookListMessage += "************************************************";
+        Utils.printMessage(bookListMessage);
     }
 }
