@@ -17,9 +17,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ProgramTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
-    private final PrintStream originalErr = System.err;
 
     private static List bookList = new ArrayList<>();
 
@@ -32,38 +30,48 @@ public class ProgramTest {
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
     }
 
     @After
     public void restoreStreams() {
         System.setOut(originalOut);
-        System.setErr(originalErr);
     }
 
-    @Test
-    public void printMessageTest() {
-        String message = "some message";
-        Program program = new Program();
-        program.printMessage(message);
-        assertEquals("some message\n", outContent.toString());
-    }
 
     @Test
     public void mainTest() {
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
         System.setIn(in);
 
         Program program = new Program();
         program.main();
-        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n" +
+
+        assertEquals(
                 "Main menu:\n" +
-                "1. List of books\n" +
-                "Please press the number of the option you want to select.\n" +
-                "Books:\n" +
-                "Book1 | Author1 | 2001\n" +
-                "Book2 | Author2 | 2002\n", outContent.toString());
+                        "1. List of books\n" +
+                        "Please press the number of the option you want to select.\n" +
+                        "Books:\n" +
+                        "Book1 | Author1 | 2001\n" +
+                        "Book2 | Author2 | 2002\n", outContent.toString());
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    public void mainTestWithError() {
+        InputStream sysInBackup = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("error input".getBytes());
+        System.setIn(in);
+
+        Program program = new Program();
+        program.main();
+
+        assertEquals(
+                "Main menu:\n" +
+                        "1. List of books\n" +
+                        "Please press the number of the option you want to select.\n" +
+                        "Please select a valid option!\n", outContent.toString());
 
         System.setIn(sysInBackup);
     }

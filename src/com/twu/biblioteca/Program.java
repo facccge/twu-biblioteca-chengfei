@@ -4,29 +4,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Program {
-    private static String welcomeMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
     private static String mainMenu = "Main menu:\n" +
             "1. List of books\n" +
             "Please press the number of the option you want to select.";
 
-    public void printMessage(String message) {
-        System.out.println(message);
-    }
-
     public void main() {
-        printMessage(welcomeMessage);
-        printMessage(mainMenu);
+        Utils.printMessage(mainMenu);
         Scanner scanner = new Scanner(System.in);
-        int option = scanner.nextInt();
+        String option = scanner.nextLine();
         switch (option) {
-            case 1:
+            case "1":
                 listOfBooks();
                 break;
             default:
-                printMessage("error");
+                Utils.printMessage("Please select a valid option!");
                 break;
         }
-
     }
 
     public void listOfBooks() {
@@ -35,6 +28,6 @@ public class Program {
         for (Book book : bookList) {
             bookListMessage += book.toString() + "\n";
         }
-        printMessage(bookListMessage.substring(0, bookListMessage.length() - 1));
+        Utils.printMessage(bookListMessage.substring(0, bookListMessage.length() - 1));
     }
 }
