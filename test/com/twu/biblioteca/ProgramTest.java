@@ -119,6 +119,23 @@ public class ProgramTest {
     }
 
     @Test
+    public void mainTestWhenReturnBookFalse() {
+        InputStream sysInBackup = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("3\n0001".getBytes());
+        System.setIn(in);
+
+        Program program = new Program();
+        assertEquals(true, program.main());
+
+        assertEquals(
+                mainMenu +
+                        "Please input id of the book which you want to return.\n" +
+                        "That is not a valid book to return.\n", outContent.toString());
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
     public void mainTestWhenInputError() {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("error input".getBytes());

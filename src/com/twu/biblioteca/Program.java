@@ -54,7 +54,9 @@ public class Program {
         String id = scanner.nextLine();
         if(Book.returnBook(id)){
             Utils.printMessage("Thank you for returning the book.");
+            return;
         }
+        Utils.printMessage("That is not a valid book to return.");
     }
 
     public void listOfBooks() {
