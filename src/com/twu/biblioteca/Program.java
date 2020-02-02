@@ -18,7 +18,7 @@ public class Program {
     public String buildBookList(List<Book> bookList) {
         String bookListMessage ="Books:\n";
         for (Book book : bookList) {
-            bookListMessage += book.getTitle()+"\n";
+            bookListMessage += book.toString()+"\n";
         }
         return bookListMessage;
     }
