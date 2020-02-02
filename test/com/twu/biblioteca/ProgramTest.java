@@ -6,7 +6,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,22 +50,30 @@ public class ProgramTest {
     }
 
     @Test
-    public void printBookListTest() {
-        Program program = new Program();
-        String actual = program.buildBookList(bookList);
-        assertEquals("Books:\n" +
-                "Book1 | Author1 | 2001\n" +
-                "Book2 | Author2 | 2002\n", actual);
-    }
-
-    @Test
     public void mainTest() {
+        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
+        System.setIn(in);
+
         Program program = new Program();
         program.main();
         assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n" +
+                "Main menu:\n" +
+                "1. List of books\n" +
+                "Please press the number of the option you want to select.\n" +
                 "Books:\n" +
                 "Book1 | Author1 | 2001\n" +
-                "Book2 | Author2 | 2002\n" +
-                "\n", outContent.toString());
+                "Book2 | Author2 | 2002\n", outContent.toString());
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    public void listOfBooksTest() {
+        Program program = new Program();
+        program.listOfBooks();
+        assertEquals("Books:\n" +
+                "Book1 | Author1 | 2001\n" +
+                "Book2 | Author2 | 2002\n", outContent.toString());
     }
 }
