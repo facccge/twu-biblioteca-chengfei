@@ -40,7 +40,9 @@ public class Program {
         String id = scanner.nextLine();
         if(Book.checkOut(id)){
             Utils.printMessage("Thank you! Enjoy the book");
+            return;
         };
+        Utils.printMessage("Sorry, that book is not available");
     }
 
     public void listOfBooks() {

@@ -29,7 +29,7 @@ public class Book {
     public static boolean checkOut(String checkOutId) {
         boolean isSuccess = false;
         for (Book book : bookList) {
-            if (book.id.equals(checkOutId)) {
+            if (book.id.equals(checkOutId) && (book.isCheckOut != true)) {
                 book.isCheckOut = true;
                 isSuccess = true;
                 break;

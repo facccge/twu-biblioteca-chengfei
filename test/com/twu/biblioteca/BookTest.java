@@ -37,6 +37,7 @@ public class BookTest {
     @Test
     public void checkOutTest() {
         assertEquals(true, Book.checkOut("0001"));
+        assertEquals(false, Book.checkOut("0001"));
         assertEquals(false, Book.checkOut("0003"));
     }
 }
