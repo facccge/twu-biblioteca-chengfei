@@ -11,6 +11,19 @@ public class Book {
         initializeBookList();
     }
 
+    private String id;
+    private String title;
+    private String author;
+    private String publicationYear;
+    private boolean isCheckOut;
+    public Book(String id, String title, String author, String publicationYear) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+        this.isCheckOut = false;
+    }
+
     public static void initializeBookList() {
         bookList = new ArrayList<Book>();
         bookList.add(new Book("0001", "Book1", "Author1", "2001"));
@@ -38,20 +51,6 @@ public class Book {
         return isSuccess;
     }
 
-    private String id;
-    private String title;
-    private String author;
-    private String publicationYear;
-    private boolean isCheckOut;
-
-    public Book(String id, String title, String author, String publicationYear) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.publicationYear = publicationYear;
-        this.isCheckOut = false;
-    }
-
     public static boolean returnBook(String returnId) {
         boolean isSuccess = false;
         for (Book book : bookList) {
@@ -69,12 +68,12 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(title, book.title);
+        return Objects.equals(id, book.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title);
+        return Objects.hash(id);
     }
 
     @Override

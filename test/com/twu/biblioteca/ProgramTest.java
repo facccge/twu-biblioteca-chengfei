@@ -16,9 +16,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class ProgramTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-
     private static List bookList = new ArrayList<>();
     private static String mainMenu = "Main menu:\n" +
             "1. List of books\n" +
@@ -26,6 +23,8 @@ public class ProgramTest {
             "3. Return book\n" +
             "q. Quit\n" +
             "Please select an option.\n";
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
 
     @BeforeClass
     public static void setUpBookList() {

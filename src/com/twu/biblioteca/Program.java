@@ -4,15 +4,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Program {
-    Scanner scanner = new Scanner(System.in);
-
-
     private static String mainMenu = "Main menu:\n" +
             "1. List of books\n" +
             "2. Check out book\n" +
             "3. Return book\n" +
             "q. Quit\n" +
             "Please select an option.";
+    Scanner scanner = new Scanner(System.in);
 
     public boolean main() {
         boolean isRunning = true;
