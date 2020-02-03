@@ -9,6 +9,8 @@ public class Program {
             "2. Check out book\n" +
             "3. Return book\n" +
             "4. List of movies\n" +
+            "5. Check out movie\n" +
+            "6. Return book\n" +
             "q. Quit\n" +
             "Please select an option.";
     Scanner scanner = new Scanner(System.in);
@@ -30,6 +32,12 @@ public class Program {
                 break;
             case "4":
                 listOfMovies();
+                break;
+            case "5":
+                checkOutMovie();
+                break;
+            case "6":
+                returnMovie();
                 break;
             case "q":
                 isRunning = false;
@@ -81,5 +89,25 @@ public class Program {
         }
         movieListMessage += "************************************************";
         Utils.printMessage(movieListMessage);
+    }
+
+    public void checkOutMovie() {
+        Utils.printMessage("Please input id of the movie which you want to check out.");
+        String id = scanner.nextLine();
+        if (Movie.checkOut(id)) {
+            Utils.printMessage("Thank you! Enjoy the movie.");
+            return;
+        }
+        Utils.printMessage("Sorry, that movie is not available.");
+    }
+
+    public void returnMovie() {
+        Utils.printMessage("Please input id of the movie which you want to return.");
+        String id = scanner.nextLine();
+        if (Movie.returnMovie(id)) {
+            Utils.printMessage("Thank you for returning the movie.");
+            return;
+        }
+        Utils.printMessage("That is not a valid movie to return.");
     }
 }

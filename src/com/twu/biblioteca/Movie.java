@@ -33,6 +33,30 @@ public class Movie {
         this.isCheckOut = false;
     }
 
+    public static boolean checkOut(String checkOutId) {
+        boolean isSuccess = false;
+        for (Movie movie : movieList) {
+            if (movie.id.equals(checkOutId) && (movie.isCheckOut != true)) {
+                movie.isCheckOut = true;
+                isSuccess = true;
+                break;
+            }
+        }
+        return isSuccess;
+    }
+
+    public static boolean returnMovie(String returnId) {
+        boolean isSuccess = false;
+        for (Movie movie : movieList) {
+            if (movie.id.equals(returnId) && (movie.isCheckOut == true)) {
+                movie.isCheckOut = false;
+                isSuccess = true;
+                break;
+            }
+        }
+        return isSuccess;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

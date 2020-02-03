@@ -22,6 +22,8 @@ public class ProgramTest {
             "2. Check out book\n" +
             "3. Return book\n" +
             "4. List of movies\n" +
+            "5. Check out movie\n" +
+            "6. Return book\n" +
             "q. Quit\n" +
             "Please select an option.\n";
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -181,6 +183,76 @@ public class ProgramTest {
                         "0001 | Movie1 | 2001 | director1 | 10\n" +
                         "0002 | Movie2 | 2002 | director2 | unrated\n" +
                         "************************************************\n", outContent.toString());
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    public void mainTestWhenCheckOutMovie() {
+        InputStream sysInBackup = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("5\n0001".getBytes());
+        System.setIn(in);
+
+        Program program = new Program();
+        assertEquals(true, program.main());
+
+        assertEquals(
+                mainMenu +
+                        "Please input id of the movie which you want to check out.\n" +
+                        "Thank you! Enjoy the movie.\n", outContent.toString());
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    public void mainTestWhenCheckOutMovieFalse() {
+        InputStream sysInBackup = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("5\n0003".getBytes());
+        System.setIn(in);
+
+        Program program = new Program();
+        assertEquals(true, program.main());
+
+        assertEquals(
+                mainMenu +
+                        "Please input id of the movie which you want to check out.\n" +
+                        "Sorry, that movie is not available.\n", outContent.toString());
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    public void mainTestWhenReturnMovie() {
+        Book.checkOut("0001");
+
+        InputStream sysInBackup = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("6\n0001".getBytes());
+        System.setIn(in);
+
+        Program program = new Program();
+        assertEquals(true, program.main());
+
+        assertEquals(
+                mainMenu +
+                        "Please input id of the movie which you want to return.\n" +
+                        "Thank you for returning the movie.\n", outContent.toString());
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    public void mainTestWhenReturnMovieFalse() {
+        InputStream sysInBackup = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("6\n0001".getBytes());
+        System.setIn(in);
+
+        Program program = new Program();
+        assertEquals(true, program.main());
+
+        assertEquals(
+                mainMenu +
+                        "Please input id of the movie which you want to return.\n" +
+                        "That is not a valid movie to return.\n", outContent.toString());
 
         System.setIn(sysInBackup);
     }
