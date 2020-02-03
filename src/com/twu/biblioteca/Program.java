@@ -13,12 +13,29 @@ public class Program {
             "6. Return book\n" +
             "q. Quit\n" +
             "Please select an option.";
-    Scanner scanner = new Scanner(System.in);
+    private static String logInMessage = "Please input username and password to log in.";
+    private static String logInSuccessMessage = "Log in successfully.";
+    private static String logInFailedMessage = "Log in filed.";
+    private static String loggedInUser = null;
+
+    private Scanner scanner = new Scanner(System.in);
+
 
     public boolean main() {
         boolean isRunning = true;
-        Utils.printMessage(mainMenu);
+        while (loggedInUser == null) {
+            Utils.printMessage(logInMessage);
+            String userName = scanner.nextLine();
+            String password = scanner.nextLine();
+            if (Users.login(userName, password)) {
+                loggedInUser = userName;
+                Utils.printMessage(logInSuccessMessage);
+            }else{
+                Utils.printMessage(logInFailedMessage);
+            }
+        }
 
+        Utils.printMessage(mainMenu);
         String option = scanner.nextLine();
         switch (option) {
             case "1":

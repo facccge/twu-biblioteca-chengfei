@@ -19,7 +19,7 @@ public class Movie {
     }
 
     public static void initializeMovieList() {
-        movieList = new ArrayList<Movie>();
+        movieList = new ArrayList();
         movieList.add(new Movie("0001", "Movie1", "2001", "director1", "10"));
         movieList.add(new Movie("0002", "Movie2", "2002", "director2", "unrated"));
     }

@@ -16,6 +16,7 @@ public class Book {
     private String author;
     private String publicationYear;
     private boolean isCheckOut;
+
     public Book(String id, String title, String author, String publicationYear) {
         this.id = id;
         this.title = title;
@@ -25,7 +26,7 @@ public class Book {
     }
 
     public static void initializeBookList() {
-        bookList = new ArrayList<Book>();
+        bookList = new ArrayList();
         bookList.add(new Book("0001", "Book1", "Author1", "2001"));
         bookList.add(new Book("0002", "Book2", "Author2", "2002"));
     }

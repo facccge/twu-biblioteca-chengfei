@@ -29,5 +29,4 @@ public class UtilsTest {
         Utils.printMessage(message);
         assertEquals("some message\n", outContent.toString());
     }
-
 }
