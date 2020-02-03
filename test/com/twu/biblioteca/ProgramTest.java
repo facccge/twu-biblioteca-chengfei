@@ -21,6 +21,7 @@ public class ProgramTest {
             "1. List of books\n" +
             "2. Check out book\n" +
             "3. Return book\n" +
+            "4. List of movies\n" +
             "q. Quit\n" +
             "Please select an option.\n";
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -43,9 +44,8 @@ public class ProgramTest {
         Book.initializeBookList();
     }
 
-
     @Test
-    public void mainTestWhenSelectList() {
+    public void mainTestWhenListBooks() {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
         System.setIn(in);
@@ -166,13 +166,22 @@ public class ProgramTest {
     }
 
     @Test
-    public void listOfBooksTest() {
+    public void mainTestWhenListMovies() {
+        InputStream sysInBackup = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("4".getBytes());
+        System.setIn(in);
+
         Program program = new Program();
-        program.listOfBooks();
-        assertEquals("************************************************\n" +
-                "Books:\n" +
-                "0001 | Book1 | Author1 | 2001\n" +
-                "0002 | Book2 | Author2 | 2002\n" +
-                "************************************************\n", outContent.toString());
+        assertEquals(true, program.main());
+
+        assertEquals(
+                mainMenu +
+                        "************************************************\n" +
+                        "Movies:\n" +
+                        "0001 | Movie1 | 2001 | director1 | 10\n" +
+                        "0002 | Movie2 | 2002 | director2 | unrated\n" +
+                        "************************************************\n", outContent.toString());
+
+        System.setIn(sysInBackup);
     }
 }

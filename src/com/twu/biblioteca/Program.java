@@ -8,6 +8,7 @@ public class Program {
             "1. List of books\n" +
             "2. Check out book\n" +
             "3. Return book\n" +
+            "4. List of movies\n" +
             "q. Quit\n" +
             "Please select an option.";
     Scanner scanner = new Scanner(System.in);
@@ -26,6 +27,9 @@ public class Program {
                 break;
             case "3":
                 returnBook();
+                break;
+            case "4":
+                listOfMovies();
                 break;
             case "q":
                 isRunning = false;
@@ -50,7 +54,7 @@ public class Program {
     public void returnBook() {
         Utils.printMessage("Please input id of the book which you want to return.");
         String id = scanner.nextLine();
-        if(Book.returnBook(id)){
+        if (Book.returnBook(id)) {
             Utils.printMessage("Thank you for returning the book.");
             return;
         }
@@ -66,5 +70,16 @@ public class Program {
         }
         bookListMessage += "************************************************";
         Utils.printMessage(bookListMessage);
+    }
+
+    public void listOfMovies() {
+        List<Movie> movieList = Movie.list();
+        String movieListMessage = "************************************************\n" +
+                "Movies:\n";
+        for (Movie movie : movieList) {
+            movieListMessage += movie.toString() + "\n";
+        }
+        movieListMessage += "************************************************";
+        Utils.printMessage(movieListMessage);
     }
 }
