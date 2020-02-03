@@ -6,10 +6,10 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
         Utils.printMessage(welcomeMessage);
-        Program program = new Program();
+        MainMenu mainMenu = new MainMenu();
         boolean isRunning = true;
         while (isRunning) {
-            isRunning = program.main();
+            isRunning = mainMenu.main();
         }
     }
 }

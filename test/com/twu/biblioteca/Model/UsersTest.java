@@ -1,5 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.Model;
 
+import com.twu.biblioteca.Model.Users;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -23,14 +24,14 @@ public class UsersTest {
     @Test
     public void loginTest() {
         boolean expected = true;
-        boolean actual = Users.login("user1", "123456");
+        boolean actual = Users.login("abc-1234", "123456");
         assertEquals(expected, actual);
     }
 
     @Test
     public void loginTestWithError() {
         boolean expected = false;
-        boolean actual = Users.login("user1", "111111");
+        boolean actual = Users.login("abc-1234", "111111");
         assertEquals(expected, actual);
     }
 }

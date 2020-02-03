@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ public class Users {
     public static List<Users> userList = new ArrayList<Users>();
 
     static {
-        userList.add(new Users("user1", "123456"));
-        userList.add(new Users("user2", "123456"));
+        userList.add(new Users("abc-1234", "123456"));
+        userList.add(new Users("abc-1235", "654321"));
     }
 
     private String userName;

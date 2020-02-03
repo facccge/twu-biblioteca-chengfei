@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +15,14 @@ public class Book {
     private String title;
     private String author;
     private String publicationYear;
-    private boolean isCheckOut;
+    private String checkedOutUserName;
 
     public Book(String id, String title, String author, String publicationYear) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
-        this.isCheckOut = false;
+        this.checkedOutUserName = "";
     }
 
     public static void initializeBookList() {
@@ -34,17 +34,26 @@ public class Book {
     public static List<Book> list() {
         List availableBookList = new ArrayList();
         for (Book book : bookList) {
-            if (book.isCheckOut == false)
+            if (book.checkedOutUserName.equals(""))
                 availableBookList.add(book);
         }
         return availableBookList;
     }
 
-    public static boolean checkOut(String checkOutId) {
+    public static List<Book> listCheckedOut(String userName) {
+        List checkedOutBookList = new ArrayList();
+        for (Book book : bookList) {
+            if (book.checkedOutUserName.equals(userName))
+                checkedOutBookList.add(book);
+        }
+        return checkedOutBookList;
+    }
+
+    public static boolean checkOut(String checkOutId, String userName) {
         boolean isSuccess = false;
         for (Book book : bookList) {
-            if (book.id.equals(checkOutId) && (book.isCheckOut != true)) {
-                book.isCheckOut = true;
+            if (book.id.equals(checkOutId) && book.checkedOutUserName.equals("")) {
+                book.checkedOutUserName = userName;
                 isSuccess = true;
                 break;
             }
@@ -52,11 +61,11 @@ public class Book {
         return isSuccess;
     }
 
-    public static boolean returnBook(String returnId) {
+    public static boolean returnBook(String returnId, String userName) {
         boolean isSuccess = false;
         for (Book book : bookList) {
-            if (book.id.equals(returnId) && (book.isCheckOut == true)) {
-                book.isCheckOut = false;
+            if (book.id.equals(returnId) && book.checkedOutUserName.equals(userName)) {
+                book.checkedOutUserName = null;
                 isSuccess = true;
                 break;
             }

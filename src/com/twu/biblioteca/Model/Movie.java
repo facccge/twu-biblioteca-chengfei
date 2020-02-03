@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Movie {
     private String year;
     private String director;
     private String movieRating;
-    private boolean isCheckOut;
+    private String checkedOutUserName;
 
     public static List<Movie> movieList;
 
@@ -30,14 +30,14 @@ public class Movie {
         this.year = year;
         this.director = director;
         this.movieRating = movieRating;
-        this.isCheckOut = false;
+        this.checkedOutUserName = "";
     }
 
-    public static boolean checkOut(String checkOutId) {
+    public static boolean checkOut(String checkOutId, String userName) {
         boolean isSuccess = false;
         for (Movie movie : movieList) {
-            if (movie.id.equals(checkOutId) && (movie.isCheckOut != true)) {
-                movie.isCheckOut = true;
+            if (movie.id.equals(checkOutId) && movie.checkedOutUserName.equals("")) {
+                movie.checkedOutUserName = userName;
                 isSuccess = true;
                 break;
             }
@@ -45,11 +45,11 @@ public class Movie {
         return isSuccess;
     }
 
-    public static boolean returnMovie(String returnId) {
+    public static boolean returnMovie(String returnId, String userName) {
         boolean isSuccess = false;
         for (Movie movie : movieList) {
-            if (movie.id.equals(returnId) && (movie.isCheckOut == true)) {
-                movie.isCheckOut = false;
+            if (movie.id.equals(returnId) && movie.checkedOutUserName.equals(userName)) {
+                movie.checkedOutUserName = "";
                 isSuccess = true;
                 break;
             }
@@ -82,9 +82,18 @@ public class Movie {
     public static List<Movie> list() {
         List availableMovieList = new ArrayList();
         for (Movie movie : movieList) {
-            if (movie.isCheckOut == false)
+            if (movie.checkedOutUserName.equals(""))
                 availableMovieList.add(movie);
         }
         return availableMovieList;
+    }
+
+    public static List<Movie> listCheckedOut(String userName) {
+        List checkedOutMovieList = new ArrayList();
+        for (Movie movie : movieList) {
+            if (movie.checkedOutUserName.equals(userName))
+                checkedOutMovieList.add(movie);
+        }
+        return checkedOutMovieList;
     }
 }
