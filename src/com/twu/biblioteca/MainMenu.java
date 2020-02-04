@@ -41,6 +41,7 @@ public class MainMenu {
             }
         }
 
+        Utils.printMessage(Users.listUserInfo(loggedInUser));
         Utils.printMessage(mainMenu);
         String option = scanner.nextLine();
         switch (option) {

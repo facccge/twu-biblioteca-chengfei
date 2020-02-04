@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.Movie;
-import com.twu.biblioteca.MainMenu;
 import org.junit.*;
 
 import java.io.ByteArrayInputStream;
@@ -17,7 +16,8 @@ import static org.junit.Assert.assertEquals;
 
 public class MainMenuTest {
     private static List bookList = new ArrayList<>();
-    private static String mainMenu = "Main menu:\n" +
+    private static String userInfomation = "abc-1234 | 小明 | xiaoming@123.com | 13012345678\n";
+    private static String menuMesage = "Main menu:\n" +
             "1. List of books\n" +
             "2. Check out book\n" +
             "3. Return book\n" +
@@ -71,7 +71,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "************************************************\n" +
                         "Books:\n" +
                         "0001 | Book1 | Author1 | 2001\n" +
@@ -86,7 +86,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "Please input id of the book which you want to check out.\n" +
                         "Thank you! Enjoy the book.\n", outContent.toString());
     }
@@ -98,7 +98,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "Please input id of the book which you want to check out.\n" +
                         "Sorry, that book is not available.\n", outContent.toString());
     }
@@ -111,7 +111,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "Please input id of the book which you want to return.\n" +
                         "Thank you for returning the book.\n", outContent.toString());
     }
@@ -123,7 +123,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "Please input id of the book which you want to return.\n" +
                         "That is not a valid book to return.\n", outContent.toString());
     }
@@ -135,7 +135,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "Please select a valid option!\n", outContent.toString());
     }
 
@@ -146,7 +146,7 @@ public class MainMenuTest {
 
         assertEquals(false, mainMenu.main());
         Assert.assertEquals(
-                MainMenuTest.mainMenu, outContent.toString());
+                userInfomation + menuMesage, outContent.toString());
     }
 
     @Test
@@ -156,7 +156,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "************************************************\n" +
                         "Movies:\n" +
                         "0001 | Movie1 | 2001 | director1 | 10\n" +
@@ -171,7 +171,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "Please input id of the movie which you want to check out.\n" +
                         "Thank you! Enjoy the movie.\n", outContent.toString());
     }
@@ -183,7 +183,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "Please input id of the movie which you want to check out.\n" +
                         "Sorry, that movie is not available.\n", outContent.toString());
     }
@@ -196,7 +196,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "Please input id of the movie which you want to return.\n" +
                         "Thank you for returning the movie.\n", outContent.toString());
     }
@@ -208,7 +208,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "Please input id of the movie which you want to return.\n" +
                         "That is not a valid movie to return.\n", outContent.toString());
     }
@@ -222,7 +222,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "************************************************\n" +
                         "Checked out books:\n" +
                         "0001 | Book1 | Author1 | 2001\n" +
@@ -238,7 +238,7 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.main());
         assertEquals(
-                MainMenuTest.mainMenu +
+                userInfomation + menuMesage +
                         "************************************************\n" +
                         "Checked out movies:\n" +
                         "0001 | Movie1 | 2001 | director1 | 10\n" +
